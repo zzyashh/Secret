@@ -21,7 +21,7 @@
         h1 {
             font-size: 2.5rem;
             color: #ff4081;
-            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .container {
@@ -30,7 +30,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 50vh;
         }
 
         .buttons {
@@ -82,6 +81,7 @@
             text-align: center;
             max-width: 80%;
             margin-top: 20px;
+            display: none;
         }
 
         .gallery-container {
@@ -217,6 +217,7 @@
 
         function showCelebration() {
             celebrationScreen.style.display = "flex";
+            message.style.display = "block";
             galleryContainer.style.display = "flex";
             spawnBalloons();
         }
