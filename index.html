@@ -10,21 +10,32 @@
             background-color: #ffccdc;
             font-family: Arial, sans-serif;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            margin: 0;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #ff4081;
             margin-top: 20px;
         }
 
         .container {
-            margin-top: 50px;
             position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
         }
 
         .buttons {
             margin-top: 20px;
+            position: relative;
         }
 
         .btn {
@@ -56,11 +67,28 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
+            color: white;
+            overflow: auto;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+        }
+
+        #message {
+            font-size: 1.5rem;
             color: white;
+            text-align: center;
+            max-width: 80%;
+            margin-top: 20px;
+        }
+
+        .gallery-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
         }
 
         .gallery {
@@ -71,7 +99,6 @@
             height: 300px;
             border-radius: 15px;
             background: white;
-            margin-top: 20px;
             position: relative;
         }
 
@@ -123,6 +150,26 @@
             top: -20px;
             transform: translateX(-50%);
         }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            .gallery {
+                height: 250px;
+            }
+
+            #message {
+                font-size: 1.2rem;
+                max-width: 90%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -136,24 +183,29 @@
     </div>
 
     <div id="celebration">
-        <h1>Yay! ❤️ Happy Valentine's Day!</h1>
-        <div class="gallery">
-            <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
-            <img id="galleryImg" src="image1.jpg" alt="Love Memories">
-            <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
+        <div id="message">💖 Happy Valentine's Day, my love! 💖</div>
+        <div class="gallery-container">
+            <div class="gallery">
+                <button class="arrow arrow-left" onclick="prevSlide()">&#10094;</button>
+                <img id="galleryImg" src="image1.jpg" alt="Love Memories">
+                <button class="arrow arrow-right" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <p>Swipe through our cute memories! 💕</p>
         </div>
-        <p>Swipe through our cute memories! 💕</p>
     </div>
 
     <script>
         const noBtn = document.getElementById("noBtn");
         const yesBtn = document.getElementById("yesBtn");
+        const celebrationScreen = document.getElementById("celebration");
+        const message = document.getElementById("message");
+        const galleryContainer = document.querySelector(".gallery-container");
         let images = ["image1.jpg", "image2.jpg", "image3.jpg"]; // Add your images here
         let currentIndex = 0;
 
         function moveNoButton() {
-            let x = Math.random() * (window.innerWidth - 100);
-            let y = Math.random() * (window.innerHeight - 100);
+            let x = Math.random() * (window.innerWidth - 150);
+            let y = Math.random() * (window.innerHeight - 150);
             let size = Math.random() * 50 + 20;
             noBtn.style.left = `${x}px`;
             noBtn.style.top = `${y}px`;
@@ -164,7 +216,8 @@
         noBtn.addEventListener("mouseover", moveNoButton);
 
         function showCelebration() {
-            document.getElementById("celebration").style.display = "flex";
+            celebrationScreen.style.display = "flex";
+            galleryContainer.style.display = "flex";
             spawnBalloons();
         }
 
